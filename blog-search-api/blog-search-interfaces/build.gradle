@@ -1,0 +1,10 @@
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation project(':common')
+
+    implementation project(':blog-search-api:blog-search-domain')
+    implementation project(':blog-search-api:blog-search-application')
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}

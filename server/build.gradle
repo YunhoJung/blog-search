@@ -1,0 +1,26 @@
+version '1.0-SNAPSHOT'
+
+bootJar {
+    enabled true
+}
+
+
+dependencies {
+    implementation project(':common')
+
+    // blog-search-api
+    implementation project(':blog-search-api:blog-search-interfaces')
+    implementation project(':blog-search-api:blog-search-infrastructure')
+    implementation project(':blog-search-api:blog-search-application')
+    implementation project(':blog-search-api:blog-search-domain')
+
+    // search-client
+    implementation project(':search-client')
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
