@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,4 +35,17 @@ public class Search {
     @Column(updatable = false, nullable = false)
     private LocalDateTime searchedAt;
 
+    protected Search(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public static Search createSearch(String keyword) {
+        return new Search(keyword);
+    }
+
+    public static void validateKeyword(String keyword) throws InvalidKeywordException{
+        if (keyword == null || keyword.isBlank()) {
+            throw new InvalidKeywordException();
+        }
+    }
 }
