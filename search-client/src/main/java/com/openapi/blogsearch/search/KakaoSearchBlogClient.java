@@ -36,11 +36,11 @@ public class KakaoSearchBlogClient {
             .exchange(builder.toUriString(), HttpMethod.GET, entity, String.class)
             .getBody();
 
-        KakaoBlog kakaoBlog = null;
+        KakaoBlog kakaoBlog;
         try {
             kakaoBlog = mapper.readValue(body, KakaoBlog.class);
         } catch (JsonProcessingException e) {
-            log.info("JsonProcessingException");
+            throw new InvalidApiSpecException("External Api Spec might be changed");
         }
 
         return SearchResultDto.fromKakaoBlog(kakaoBlog);
