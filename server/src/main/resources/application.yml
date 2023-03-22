@@ -1,0 +1,22 @@
+# DB
+spring:
+  datasource:
+    url: jdbc:h2:mem:test
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+logging.level:
+  org.hibernate.SQL: debug
+
+# EXTERNAL API CONFIG
+external:
+  api:
+    url: { URL_NAME }
+    key: { REST_API_KEY }
