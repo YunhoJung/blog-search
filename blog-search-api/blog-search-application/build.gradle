@@ -1,5 +1,13 @@
 version '1.0-SNAPSHOT'
 
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
 dependencies {
     implementation project(':common')
 
@@ -7,5 +15,6 @@ dependencies {
 
     implementation project(':search-client')
 
+    implementation 'org.springframework:spring-tx:5.3.23'
     implementation 'org.springframework.boot:spring-boot-starter'
 }

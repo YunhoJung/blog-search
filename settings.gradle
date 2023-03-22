@@ -8,14 +8,17 @@ include 'server'
 
 // blog-search-api
 include 'blog-search-api'
-include 'blog-search-api:blog-search-domain'
-findProject(':blog-search-api:blog-search-domain')?.name = 'blog-search-domain'
-include 'blog-search-api:blog-search-application'
-findProject(':blog-search-api:blog-search-application')?.name = 'blog-search-application'
-include 'blog-search-api:blog-search-interfaces'
 findProject(':blog-search-api:blog-search-interfaces')?.name = 'blog-search-interfaces'
-include 'blog-search-api:blog-search-infrastructure'
+include 'blog-search-api:blog-search-interfaces'
+
 findProject(':blog-search-api:blog-search-infrastructure')?.name = 'blog-search-infrastructure'
+include 'blog-search-api:blog-search-infrastructure'
+
+findProject(':blog-search-api:blog-search-application')?.name = 'blog-search-application'
+include 'blog-search-api:blog-search-application'
+
+findProject(':blog-search-api:blog-search-domain')?.name = 'blog-search-domain'
+include 'blog-search-api:blog-search-domain'
 
 // search-client
 include 'search-client'

@@ -1,7 +1,16 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.0'
+	id 'org.springframework.boot' version '2.4.0'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'application'
+}
+
+bootJar {
+	enabled = false
+}
+
+jar {
+	enabled = true
 }
 
 repositories {
@@ -15,6 +24,7 @@ subprojects {
 	apply plugin: 'java'
 	apply plugin: 'org.springframework.boot'
 	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'application'
 
 	repositories {
 		mavenCentral()
@@ -29,8 +39,25 @@ subprojects {
 		testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	}
 
-	tasks.named('test') {
+	test {
 		useJUnitPlatform()
+	}
+
+	sourceSets {
+		integrationTest {
+			java.srcDir "$projectDir/src/integrationTest/java"
+			resources.srcDir "$projectDir/src/integrationTest/resources"
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+		}
+	}
+
+	configurations {
+		integrationTestImplementation.extendsFrom implementation
+		integrationTestImplementation.extendsFrom testImplementation
+		integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+		integrationTestCompileOnly.extendsFrom testCompileOnly
+		integrationTestAnnotationProcessor.extendsFrom testAnnotationProcessor
 	}
 
 }
