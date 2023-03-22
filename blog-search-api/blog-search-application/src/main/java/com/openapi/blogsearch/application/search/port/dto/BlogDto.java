@@ -18,7 +18,7 @@ public class BlogDto {
 
     private String url;
 
-    private LocalDateTime localDateTime;
+    private LocalDateTime postedAt;
 
     public static BlogDto from(BlogResultDto blogResultDto) {
         return new BlogDto(
